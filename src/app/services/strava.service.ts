@@ -1,3 +1,4 @@
 export class StravaService {
+    urlConnection = '';
 
 }

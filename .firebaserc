@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "huaweiexporter": {
+      "hosting": {
+        "huaweiToStrava": [
+          "huaweiexporter"
+        ]
+      }
+    }
+  }
+}

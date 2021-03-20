@@ -8,8 +8,10 @@ import {StravaService} from '../services/strava.service';
 })
 export class ConnectStravaComponent implements OnInit {
 
-  constructor(private stravaService: StravaService) {
+  stravaURLConnection = '';
 
+  constructor(private stravaService: StravaService) {
+    this.stravaURLConnection = stravaService.urlConnection;
   }
 
   ngOnInit(): void {
