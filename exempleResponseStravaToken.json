@@ -1,0 +1,29 @@
+{
+  "token_type": "Bearer",
+  "expires_at": 1620121232,
+  "expires_in": 21600,
+  "refresh_token": "78425f59c826d4f8d82bbd96d61fd187d472d755",
+  "access_token": "8e4149b0607642739f92d5e26ee7b9a37691a868",
+  "athlete": {
+    "id": 41834787,
+    "username": null,
+    "resource_state": 2,
+    "firstname": "Paul-Louis",
+    "lastname": "Renard",
+    "bio": "",
+    "city": "",
+    "state": "",
+    "country": null,
+    "sex": "M",
+    "premium": false,
+    "summit": false,
+    "created_at": "2019-05-04T20:12:55Z",
+    "updated_at": "2021-01-08T08:14:06Z",
+    "badge_type_id": 0,
+    "weight": 74.0,
+    "profile_medium": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/41834787/13047428/1/medium.jpg",
+    "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/41834787/13047428/1/large.jpg",
+    "friend": null,
+    "follower": null
+  }
+}

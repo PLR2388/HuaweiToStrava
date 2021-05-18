@@ -1,5 +1,5 @@
 export interface StravaUser {
-    id: string;
-    stravaId: number;
+    id: number;
     refreshToken: string;
+    accessToken: string;
 }

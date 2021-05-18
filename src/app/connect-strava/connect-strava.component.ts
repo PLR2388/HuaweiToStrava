@@ -11,10 +11,10 @@ export class ConnectStravaComponent implements OnInit {
   stravaURLConnection = '';
 
   constructor(private stravaService: StravaService) {
-    this.stravaURLConnection = stravaService.urlConnection;
   }
 
   ngOnInit(): void {
+    this.stravaURLConnection = this.stravaService.urlConnection;
   }
 
 }
