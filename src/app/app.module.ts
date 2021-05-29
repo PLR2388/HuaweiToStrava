@@ -13,17 +13,28 @@ import {StravaService} from './services/strava.service';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {ReceiveTokenStravaComponent} from './receive-token-strava/receive-token-strava.component';
+import {LoginComponent} from './login/login.component';
+import {FirebaseService} from './services/firebase.service';
+import { LoginSuccessComponent } from './login-success/login-success.component';
+import { HomeComponent } from './home/home.component';
+import { ProgressStepComponent } from './progress/progress-step/progress-step.component';
+import { ProgressStepDirective } from './progress/progress-step.directive';
 
 const appRoutes: Routes = [
     {path: 'strava', component: ReceiveTokenStravaComponent},
-    {path: '', component: ConnectStravaComponent}
+    {path: '', component: HomeComponent}
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         ConnectStravaComponent,
-        ReceiveTokenStravaComponent
+        ReceiveTokenStravaComponent,
+        LoginComponent,
+        LoginSuccessComponent,
+        HomeComponent,
+        ProgressStepComponent,
+        ProgressStepDirective
     ],
     imports: [
         BrowserModule,
@@ -35,7 +46,8 @@ const appRoutes: Routes = [
     ],
     exports: [RouterModule],
     providers: [
-        StravaService
+        StravaService,
+        FirebaseService
     ],
     bootstrap: [AppComponent]
 })

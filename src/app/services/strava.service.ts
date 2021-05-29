@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {CONST} from '../../constants';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -13,16 +13,25 @@ export class StravaService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getToken(code: string): Observable<StravaUser> {
-        const url = 'https://www.strava.com/oauth/token?' +
-            'client_id=' + CONST.STRAVA_CLIENT_ID +
-            '&client_secret=' + CONST.STRAVA_CLIENT_SECRET +
-            '&code=' + code +
-            '&grant_type=authorization_code';
-        return this.httpClient.post<StravaUser>(url, null, {observe: 'body' })
-            .pipe(
-                catchError(this.handleError)
-            );
+    getToken(code: string | null): Observable<object>| undefined {
+        if (code != null) {
+            const httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json'
+                })
+            };
+            const url = 'https://www.strava.com/oauth/token?' +
+                'client_id=' + CONST.STRAVA_CLIENT_ID +
+                '&client_secret=' + CONST.STRAVA_CLIENT_SECRET +
+                '&code=' + code +
+                '&grant_type=authorization_code';
+            return this.httpClient.post(url, null, httpOptions)
+                .pipe(
+                    catchError(this.handleError)
+                );
+        } else {
+            return undefined;
+        }
     }
 
     private handleError(error: HttpErrorResponse): Observable<any> {
