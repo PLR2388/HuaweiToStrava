@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FirebaseService} from "../services/firebase.service";
+import {FirebaseService} from '../services/firebase.service';
 
 @Component({
     selector: 'app-login',
@@ -9,6 +9,7 @@ import {FirebaseService} from "../services/firebase.service";
 export class LoginComponent implements OnInit {
 
     isSignedIn = false;
+    isRegistered = true;
 
     constructor(public firebaseService: FirebaseService) {
     }
@@ -33,6 +34,14 @@ export class LoginComponent implements OnInit {
         if (this.firebaseService.isLoggedIn) {
             this.isSignedIn = true;
         }
+    }
+
+    onShouldRegister() {
+        this.isRegistered = false;
+    }
+
+    onShouldLogin() {
+        this.isRegistered = true;
     }
 
     handleLogout() {

@@ -1,12 +1,18 @@
 <app-progress>
     <app-progress-step>
-        <h1>Step 1</h1>
+        <h1>Connect to your Huawei To Strava Account</h1>
+        <app-login></app-login>
     </app-progress-step>
     <app-progress-step>
-        <h1>Step 2</h1>
+        <h1>Connect to Strava</h1>
+        <app-connect-strava></app-connect-strava>
+    </app-progress-step>
+    <app-progress-step>
+        <h1>Connect to Huawei</h1>
+        <app-connect-strava></app-connect-strava>
     </app-progress-step>
 </app-progress>
 
 
-<app-login *ngIf="!isSignedIn"></app-login>
-<app-connect-strava *ngIf="isSignedIn"></app-connect-strava>
+
+
