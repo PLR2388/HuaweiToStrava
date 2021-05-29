@@ -1,7 +1,7 @@
 <app-progress>
     <app-progress-step>
         <h1>Connect to your Huawei To Strava Account</h1>
-        <app-login></app-login>
+        <app-login (signInSuccess)="setUserId($event)"></app-login>
     </app-progress-step>
     <app-progress-step>
         <h1>Connect to Strava</h1>

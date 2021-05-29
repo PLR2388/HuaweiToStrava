@@ -1,6 +1,5 @@
 export default class User {
-    username = '';
-    password = '';
+    userId = '';
     stravaRefreshToken = '';
     huaweiRefreshToken = '';
 }
