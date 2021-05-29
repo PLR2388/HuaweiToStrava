@@ -23,20 +23,19 @@ export class ReceiveTokenStravaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.code$ = this.route.queryParamMap.pipe(
-            map((params: ParamMap) => params.get('code'))
-        );
-        this.code$.subscribe(param => {
-            const observer = this.stravaService.getToken(param);
-            if (observer !== undefined) {
-                observer.subscribe(token => {
-                    const json = JSON.parse(token.toString());
-                    console.log(json);
-                    const refreshToken = json.refresh_token;
-                    this.stravaSuccess.emit(refreshToken);
-                });
-            }
-        });
+        // this.code$ = this.route.queryParamMap.pipe(
+        //     map((params: ParamMap) => params.get('code'))
+        // );
+        // this.code$.subscribe(param => {
+        //     const observer = this.stravaService.getToken(param);
+        //     if (observer !== undefined) {
+        //         observer.subscribe(token => {
+        //             const refreshToken = token.refresh_token;
+        //             console.log(refreshToken);
+        //             this.stravaSuccess.emit(refreshToken);
+        //         });
+        //     }
+        // });
     }
 
 }

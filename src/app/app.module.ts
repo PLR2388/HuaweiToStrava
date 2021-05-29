@@ -21,7 +21,7 @@ import { ProgressStepDirective } from './progress/progress-step.directive';
 import { ProgressComponent } from './progress/progress.component';
 
 const appRoutes: Routes = [
-    {path: 'strava', component: ReceiveTokenStravaComponent},
+    {path: 'strava', component: ConnectStravaComponent},
     {path: '', component: HomeComponent}
 ];
 

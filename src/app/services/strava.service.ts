@@ -13,7 +13,7 @@ export class StravaService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getToken(code: string | null): Observable<object>| undefined {
+    getToken(code: string | null): Observable<any> | undefined {
         if (code != null) {
             const httpOptions = {
                 headers: new HttpHeaders({
