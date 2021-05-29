@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {StravaService} from '../services/strava.service';
 import {StravaUser} from '../models/stravaUser.model';
@@ -16,6 +16,9 @@ export class ReceiveTokenStravaComponent implements OnInit {
     code: string | null = '';
     private code$: Observable<string | null> | undefined;
 
+    @Output()
+    stravaSuccess: EventEmitter<string> = new EventEmitter<string>();
+
     constructor(private route: ActivatedRoute, private stravaService: StravaService) {
     }
 
@@ -27,7 +30,10 @@ export class ReceiveTokenStravaComponent implements OnInit {
             const observer = this.stravaService.getToken(param);
             if (observer !== undefined) {
                 observer.subscribe(token => {
-                    console.log(token);
+                    const json = JSON.parse(token.toString());
+                    console.log(json);
+                    const refreshToken = json.refresh_token;
+                    this.stravaSuccess.emit(refreshToken);
                 });
             }
         });

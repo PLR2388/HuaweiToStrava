@@ -18,4 +18,8 @@ export class HomeComponent implements OnInit {
     setUserId(userId: string) {
         this.currentUser.userId = userId;
     }
+
+    setStravaRefreshToken($event: string) {
+        this.currentUser.stravaRefreshToken = $event;
+    }
 }

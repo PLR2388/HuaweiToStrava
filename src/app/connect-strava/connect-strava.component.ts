@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StravaService} from '../services/strava.service';
 
 @Component({
@@ -10,6 +10,9 @@ export class ConnectStravaComponent implements OnInit {
 
   stravaURLConnection = '';
 
+  @Output()
+  connectionToStrava: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private stravaService: StravaService) {
   }
 
@@ -17,4 +20,8 @@ export class ConnectStravaComponent implements OnInit {
     this.stravaURLConnection = this.stravaService.urlConnection;
   }
 
+
+  registerDataFromStrava(data: string) {
+    this.connectionToStrava.emit(data);
+  }
 }
