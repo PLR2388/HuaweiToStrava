@@ -19,23 +19,25 @@ export class ReceiveTokenStravaComponent implements OnInit {
     @Output()
     stravaSuccess: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(private route: ActivatedRoute, private stravaService: StravaService) {
+    constructor(private route: ActivatedRoute, private stravaService: StravaService, private router: Router) {
     }
 
     ngOnInit(): void {
-        // this.code$ = this.route.queryParamMap.pipe(
-        //     map((params: ParamMap) => params.get('code'))
-        // );
-        // this.code$.subscribe(param => {
-        //     const observer = this.stravaService.getToken(param);
-        //     if (observer !== undefined) {
-        //         observer.subscribe(token => {
-        //             const refreshToken = token.refresh_token;
-        //             console.log(refreshToken);
-        //             this.stravaSuccess.emit(refreshToken);
-        //         });
-        //     }
-        // });
+        this.code$ = this.route.queryParamMap.pipe(
+            map((params: ParamMap) => params.get('code'))
+        );
+        this.code$.subscribe(param => {
+                const observer = this.stravaService.getToken(param);
+                if (observer !== undefined) {
+                    observer.subscribe(token => {
+                        const refreshToken = token.refresh_token;
+                        console.log(refreshToken);
+                        console.log('Connect Strava receive ' + refreshToken + ' from successStrava');
+                        this.router.navigate([''], {state: {data: {refreshToken}}});
+                    });
+                }
+            }
+        );
     }
 
 }

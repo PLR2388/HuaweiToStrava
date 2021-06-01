@@ -18,7 +18,12 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        const data = history.state.data;
+        if (data !== undefined) {
+            if (data.refreshToken != null) {
+                this.setStravaRefreshToken(data.refreshToken);
+            }
+        }
     }
 
     setUserId(userId: string) {
@@ -28,11 +33,9 @@ export class HomeComponent implements OnInit {
     }
 
     setStravaRefreshToken(refreshToken: string) {
-        console.log('Home receive ' + refreshToken + ' from ConnectStrava');
         if (refreshToken != null) {
             this.currentUser.stravaRefreshToken = refreshToken;
             this.currentIndex = 2;
-            this.route.navigate(['/']);
         }
 
     }
