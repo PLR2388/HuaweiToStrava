@@ -3,7 +3,6 @@ import {CONST} from '../../constants';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import {StravaUser} from '../models/stravaUser.model';
 
 @Injectable()
 export class StravaService {

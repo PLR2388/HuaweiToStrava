@@ -19,9 +19,12 @@ import { HomeComponent } from './home/home.component';
 import { ProgressStepComponent } from './progress/progress-step/progress-step.component';
 import { ProgressStepDirective } from './progress/progress-step.directive';
 import { ProgressComponent } from './progress/progress.component';
+import { ConnectHuaweiComponent } from './connect-huawei/connect-huawei.component';
+import { ReceiveHuaweiWebhookComponent } from './receive-huawei-webhook/receive-huawei-webhook.component';
 
 const appRoutes: Routes = [
     {path: 'strava', component: ReceiveTokenStravaComponent},
+    {path: 'healthkit/notifications', component: ReceiveHuaweiWebhookComponent},
     {path: '', component: HomeComponent}
 ];
 
@@ -34,7 +37,9 @@ const appRoutes: Routes = [
         HomeComponent,
         ProgressStepComponent,
         ProgressStepDirective,
-        ProgressComponent
+        ProgressComponent,
+        ConnectHuaweiComponent,
+        ReceiveHuaweiWebhookComponent
     ],
     imports: [
         BrowserModule,
