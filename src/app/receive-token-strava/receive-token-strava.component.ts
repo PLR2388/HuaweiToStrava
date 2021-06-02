@@ -15,6 +15,7 @@ export class ReceiveTokenStravaComponent implements OnInit {
     data: StravaUser = {} as StravaUser;
     code: string | null = '';
     private code$: Observable<string | null> | undefined;
+    private state$: Observable<string | null> | undefined;
 
     @Output()
     stravaSuccess: EventEmitter<string> = new EventEmitter<string>();
@@ -26,14 +27,17 @@ export class ReceiveTokenStravaComponent implements OnInit {
         this.code$ = this.route.queryParamMap.pipe(
             map((params: ParamMap) => params.get('code'))
         );
+        this.state$ = this.route.queryParamMap.pipe(
+            map((params: ParamMap) => params.get('state'))
+        );
         this.code$.subscribe(param => {
                 const observer = this.stravaService.getToken(param);
                 if (observer !== undefined) {
                     observer.subscribe(token => {
-                        const refreshToken = token.refresh_token;
-                        console.log(refreshToken);
-                        console.log('Connect Strava receive ' + refreshToken + ' from successStrava');
-                        this.router.navigate([''], {state: {data: {refreshToken}}});
+                        const stravaRefreshToken = token.refresh_token;
+                        this.state$?.subscribe(userId => {
+                            this.router.navigate([''], {state: {data: {stravaRefreshToken, userId}}});
+                        });
                     });
                 }
             }

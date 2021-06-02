@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import User from '../models/user.model';
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -11,32 +10,34 @@ export class HomeComponent implements OnInit {
     currentUser: User = new User();
 
     currentIndex = 0;
-    route: Router;
 
-    constructor(route: Router) {
-        this.route = route;
+    constructor() {
     }
 
     ngOnInit(): void {
         const data = history.state.data;
+        console.log(data);
         if (data !== undefined) {
-            if (data.refreshToken != null) {
-                this.setStravaRefreshToken(data.refreshToken);
+            if (data.userId !== undefined) {
+                this.setUserId(data.userId);
+                if (data.stravaRefreshToken !== undefined) {
+                    this.setStravaRefreshToken(data.stravaRefreshToken);
+                    console.log(this.currentUser);
+                }
             }
         }
     }
 
-    setUserId(userId: string) {
-        if (userId != null) {
+    setUserId(userId: string): void {
+        if (userId !== undefined) {
             this.currentUser.userId = userId;
         }
     }
 
-    setStravaRefreshToken(refreshToken: string) {
+    setStravaRefreshToken(refreshToken: string): void {
         if (refreshToken != null) {
             this.currentUser.stravaRefreshToken = refreshToken;
             this.currentIndex = 2;
         }
-
     }
 }

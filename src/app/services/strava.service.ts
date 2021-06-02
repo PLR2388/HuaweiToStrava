@@ -7,24 +7,29 @@ import {StravaUser} from '../models/stravaUser.model';
 
 @Injectable()
 export class StravaService {
-    urlConnection = 'https://www.strava.com/oauth/authorize?client_id=36102&redirect_uri=https://plr2388.github.io/HuaweiToStrava/strava&response_type=code&scope=activity:write';
+    urlConnection = 'https://www.strava.com/oauth/authorize?client_id=36102&redirect_uri=https://plr2388.github.io/HuaweiToStrava/strava&response_type=code&scope=activity:write&state=';
 
 
     constructor(private httpClient: HttpClient) {
+    }
+
+    getUrlConnection(userId: string): string {
+        console.log('getUrlConnection called with ' + userId);
+        return this.urlConnection + userId;
     }
 
     getToken(code: string | null): Observable<any> | undefined {
         if (code != null) {
             const httpOptions = {
                 headers: new HttpHeaders({
-                    'Content-Type':  'application/json'
+                    'Content-Type': 'application/json'
                 })
             };
             const url = 'https://www.strava.com/oauth/token?' +
                 'client_id=' + CONST.STRAVA_CLIENT_ID +
                 '&client_secret=' + CONST.STRAVA_CLIENT_SECRET +
                 '&code=' + code +
-                '&grant_type=authorization_code';
+                '&grant_type=authorization_code'
             return this.httpClient.post(url, null, httpOptions)
                 .pipe(
                     catchError(this.handleError)
